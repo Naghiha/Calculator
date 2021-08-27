@@ -1,0 +1,53 @@
+﻿@model FibonnaciModel;
+<div class="text-center">
+    <form method="post" id="frm_fibonnaci" class="col-sm-6">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Fibonacci Calculator </h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Range">Range</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Range" class="form-control" id="RangeValue" />
+                        <span asp-validation-for="Range" class="text-danger"></span>
+                    </div>
+                </div>
+                <label asp-for="Sum" id="final_value" class="hide">The Sum value is: <strong></strong></label>
+
+                <div class="form-group  row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100 " id="submit" value="Calculate" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+@section scripts{
+    <script>
+
+        $(function () {
+            let form = $('form#frm_fibonnaci');
+            let rangeValidation = form.find("[data-valmsg-for='Range']")
+            $('#submit').on('click', function (evt) {
+                evt.preventDefault();
+                if (form.find("#RangeValue").val() == "") {
+                    rangeValidation.html("Please Enter The Range").show();
+                    return;
+                }
+
+                rangeValidation.hide();
+                 $.post('/home/Fibonnaci', form.serialize(), function (value) {
+                    $("#final_value").show().find("strong").html(value);
+                });
+            });
+        });
+    </script>
+}
