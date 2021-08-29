@@ -16,16 +16,16 @@ namespace TestCalculator
 
             var rangeTest1 = 22;
             var rangeTest2 = 90;
-            var boudaryRange = 4000;
+            var boudaryRange = 4000000;
             //logic
 
             var expectedrangeTest1Resualt = calc.SumOfEvenTerms(rangeTest1);
             var expectedrangeTest2Resualt = calc.SumOfEvenTerms(rangeTest2);
             var expectedboudaryRangeResualt = calc.SumOfEvenTerms(boudaryRange);
 
-            var actualRangeTest1Resualt = exampleFib.Where(x=>x<rangeTest1 && (x%2!=0)).Sum(x=>x);
-            var actualRangeTest2Resualt = exampleFib.Where(x => x < rangeTest2 && (x % 2 != 0)).Sum(x => x);
-            var actualboudaryRangeResualt = 3381; // 
+            var actualRangeTest1Resualt = exampleFib.Where(x => x < rangeTest1 && (x % 2 == 0)).Sum(x => x);
+            var actualRangeTest2Resualt = exampleFib.Where(x => x < rangeTest2 && (x % 2 == 0)).Sum(x => x);
+            var actualboudaryRangeResualt = 4613732; // pre calc
             //assert
             Assert.AreEqual(expectedrangeTest1Resualt, actualRangeTest1Resualt);
             Assert.AreEqual(expectedrangeTest2Resualt, actualRangeTest2Resualt);
@@ -40,13 +40,13 @@ namespace TestCalculator
 
 
             //Logic
-            int outOfRangeValue1 = 4001;
-            int outOfRangeValue2 = 5000;
+            int outOfRangeValue1 = 4000001;
+            int outOfRangeValue2 = 5000000;
 
 
             //assert
             var assert1 = calc.SumOfEvenTerms(outOfRangeValue1);
-            var asser2 = calc.SumOfEvenTerms(outOfRangeValue2);
+            var assert2 = calc.SumOfEvenTerms(outOfRangeValue2);
         }
     }
 }

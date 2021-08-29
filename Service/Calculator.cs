@@ -7,11 +7,11 @@ namespace Service
     {
         public int SumOfEvenTerms(int range)
         {
-            if (range > 4000)
+            if (range > 4000000)
             {
-                throw new ArgumentOutOfRangeException(message: "Range must be less than 4000",null);
+                throw new ArgumentOutOfRangeException(message: "Range can not be bigger than 4M",null); 
             }
-            var sum = 1;
+            var sum = 2;
             var x = 1;
             var y = 2;
             int z;
@@ -20,7 +20,7 @@ namespace Service
                 x = y;
                 y = z;
 
-                if (z % 2 != 0 )
+                if (z % 2 == 0 )
                 {
                     sum += z;
                 }
